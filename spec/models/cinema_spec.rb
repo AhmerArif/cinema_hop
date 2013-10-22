@@ -8,6 +8,8 @@ describe Cinema do
 
 	context "associations" do
 		it { should belong_to(:city)}
+		it { should have_many(:showtimes)}
+		it { should have_many(:movies)}
 	end
 
 	context "validations" do

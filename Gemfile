@@ -44,6 +44,7 @@ group :development, :test do
   gem 'pry'
   gem "shoulda-matchers"
   gem 'pry-plus'
+  gem 'database_cleaner'
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'capybara'

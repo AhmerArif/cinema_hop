@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131022123723) do
+ActiveRecord::Schema.define(version: 20131022141322) do
 
   create_table "cinemas", force: true do |t|
     t.string   "name"
@@ -56,5 +56,16 @@ ActiveRecord::Schema.define(version: 20131022123723) do
   end
 
   add_index "movies", ["slug"], name: "index_movies_on_slug", using: :btree
+
+  create_table "showtimes", force: true do |t|
+    t.integer  "movie_id"
+    t.integer  "cinema_id"
+    t.datetime "showing_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "showtimes", ["cinema_id"], name: "index_showtimes_on_cinema_id", using: :btree
+  add_index "showtimes", ["movie_id"], name: "index_showtimes_on_movie_id", using: :btree
 
 end

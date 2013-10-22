@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe City do
 	let(:city) { FactoryGirl.create(:city) }
- 	let(:cinema) { FactoryGirl.create(:cinema) }
+ 	let(:cinema) { FactoryGirl.create(:cinema, city_id:city) }
  	let(:movie) { FactoryGirl.create(:movie) }
 
 	context "attributes" do

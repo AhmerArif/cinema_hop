@@ -10,7 +10,8 @@ describe Movie do
 	end
 
 	context "associations" do
-		#it { should have_many(:cinemas)}
+		it { should have_many(:cinemas)}
+		it { should have_many(:showtimes)}
 	end
 
 	context "validations" do
