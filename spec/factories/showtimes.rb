@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :showtime do
     movie
     cinema
-    showing_at "2013-10-22 19:13:22"
+    showing_at Time.now
   end
 end
