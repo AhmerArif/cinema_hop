@@ -33,6 +33,8 @@ gem 'friendly_id', '>= 5.0.0.rc2'
 
 gem 'validates'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
