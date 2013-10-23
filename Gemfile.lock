@@ -64,6 +64,10 @@ GEM
       xpath (~> 2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -155,6 +159,11 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.0)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
@@ -297,6 +306,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  paperclip (~> 3.0)
   pg
   pry
   pry-plus
