@@ -6,7 +6,6 @@ controller do
     end
 end
 
-
 form do |f|
    f.inputs "Details" do
     f.input :cinema
@@ -15,5 +14,18 @@ form do |f|
   end
   f.buttons
  end
+
+  index do
+  	selectable_column
+  	column :cinema, sortable: 'cinemas.name'
+  	column :movie, sortable: 'movies.name'
+  	column "Start Time", :sortable => :showing_at do |showtime|
+      showtime.showing_at.strftime("%A, %B #{showtime.showing_at.day.ordinalize} %Y at %I:%M %p")
+    end
+  	column :showing_at
+    column :created_at
+    column :updated_at
+    default_actions
+  end
 
 end
