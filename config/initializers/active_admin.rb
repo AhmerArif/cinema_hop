@@ -1,11 +1,14 @@
+require 'footer'
+
 ActiveAdmin.setup do |config|
 
+  config.view_factory.footer = Footer
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Pak Cinemas"
+  config.site_title = "Cinema Hop"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -55,8 +58,8 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the controller.
+  config.authorization_adapter = "OnlyAdminAuthorization"
   config.authentication_method = :authenticate_admin_user!
-
   # == User Authorization
   #
   # Active Admin will automatically call an authorization
@@ -118,7 +121,7 @@ ActiveAdmin.setup do |config|
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  # config.allow_comments = false
+  config.allow_comments = false
   #
   # You can disable the menu item for the comments index page:
   # config.show_comments_in_menu = false
@@ -231,5 +234,5 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
-
 end
+

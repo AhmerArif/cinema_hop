@@ -3,9 +3,11 @@ ActiveAdmin.register City do
 config.comments = false
   
   index do
+    selectable_column
     column :name
     column :created_at
     column :updated_at
+    default_actions
   end
 
  controller do
