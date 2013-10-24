@@ -33,6 +33,12 @@ gem 'friendly_id', '>= 5.0.0.rc2'
 
 gem 'validates'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+
+gem "paperclip", "~> 3.0"
+
+gem "just-datetime-picker"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
