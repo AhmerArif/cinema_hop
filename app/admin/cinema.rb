@@ -16,6 +16,7 @@ end
     column "Website" do |cinema|
       link_to cinema.website, cinema.website.to_s
     end
+    column :address
     column :created_at
     column :updated_at
     default_actions

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023175101) do
+ActiveRecord::Schema.define(version: 20131024132702) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20131023175101) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "address"
   end
 
   add_index "cinemas", ["city_id"], name: "index_cinemas_on_city_id", using: :btree
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 20131023175101) do
     t.string   "poster_content_type"
     t.integer  "poster_file_size"
     t.datetime "poster_updated_at"
+    t.string   "language"
   end
 
   add_index "movies", ["slug"], name: "index_movies_on_slug", using: :btree
@@ -100,6 +102,8 @@ ActiveRecord::Schema.define(version: 20131023175101) do
     t.datetime "showing_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "adults_only"
+    t.boolean  "is_3d"
   end
 
   add_index "showtimes", ["cinema_id"], name: "index_showtimes_on_cinema_id", using: :btree

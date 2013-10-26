@@ -15,9 +15,9 @@ config.comments = false
       params.permit!
     end
 
-	def find_resource
-		scoped_collection.friendly.find(params[:id])
-	end
+    def find_resource
+	  	scoped_collection.friendly.find(params[:id])
+    end
   end
 
   form do |f|

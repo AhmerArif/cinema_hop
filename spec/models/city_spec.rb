@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe City do
 	let(:city) { FactoryGirl.create(:city) }
- 	let(:cinema) { FactoryGirl.create(:cinema, city_id:city) }
+ 	let(:cinema) { FactoryGirl.create(:cinema, city:city) }
  	let(:movie) { FactoryGirl.create(:movie) }
 
 	context "attributes" do
@@ -21,7 +21,7 @@ describe City do
 
 	describe "#current_movies" do
 		it "should return currently showing movies in the city" do
-			FactoryGirl.create(:showtime, movie_id:movie, cinema_id:cinema)
+			FactoryGirl.create(:showtime, movie:movie, cinema:cinema)
 			expect(city.current_movies).to include movie
 		end
 
