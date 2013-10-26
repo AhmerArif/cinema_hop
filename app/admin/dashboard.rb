@@ -18,8 +18,8 @@ ActiveAdmin.register_page "Dashboard" do
             column do
                 panel "Current Movies" do
                     ul do
-                        Movie.current.map do |movie|
-                            li link_to(movie.name, admin_showtime_path(movie))
+                        Movie.currently_showing.map do |movie|
+                            li link_to(movie.name, admin_movie_path(movie))
                         end
                     end
                 end
@@ -44,7 +44,7 @@ ActiveAdmin.register_page "Dashboard" do
                 panel "Recently Added Movies" do
                     ul do
                         Movie.recent.map do |movie|
-                            li link_to(movie.name, admin_showtime_path(movie))
+                            li link_to(movie.name, admin_movie_path(movie))
                         end
                     end
                 end

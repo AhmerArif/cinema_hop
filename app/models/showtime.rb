@@ -3,8 +3,8 @@ class Showtime < ActiveRecord::Base
 	belongs_to :cinema
 	
 	scope :current, lambda {where("showing_at >= ?", Time.now-30.minutes).order('showing_at ASC')}
+	scope :old, lambda {where("showing_at < ?", Time.now-30.minutes).order('showing_at ASC')}
 	scope :recent, :limit => 10, :order => 'created_at DESC'
-	scope :old, lambda {where("showing_at <= ?", Time.now+30.minutes).order('showing_at ASC')}
 
 	just_define_datetime_picker :showing_at
 
@@ -29,6 +29,10 @@ class Showtime < ActiveRecord::Base
 
 	def name
 		"#{movie.name} @ #{cinema.name} @ #{humanize_showing_at}"
+	end
+
+	def self.currently_in_cinemas(cinemas)
+		self.current.where("cinema_id in (?)", cinemas)
 	end
 
 end

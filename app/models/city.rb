@@ -5,4 +5,13 @@ class City < ActiveRecord::Base
 	has_many :cinemas, dependent: :destroy
 
 	validates :name, presence: true, uniqueness: true
+
+	def current_movies
+		Movie.currently_showing(self)
+	end
+
+	def default_city?
+		name=="All" || name.blank? ? true : false
+	end
+
 end

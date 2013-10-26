@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe City do
-	let(:city) { FactoryGirl.create(:city) }
- 	let(:cinema) { FactoryGirl.create(:cinema, city:city) }
- 	let(:movie) { FactoryGirl.create(:movie) }
 
 	context "attributes" do
 		it { should have_db_column(:name).of_type(:string) }
@@ -19,12 +16,38 @@ describe City do
 		it { should validate_uniqueness_of(:name) }
 	end
 
-	describe "#current_movies" do
-		it "should return currently showing movies in the city" do
-			FactoryGirl.create(:showtime, movie:movie, cinema:cinema)
-			expect(city.current_movies).to include movie
+	context "methods" do
+
+		let(:city_A) { FactoryGirl.create(:city) }
+		let(:city_B) { FactoryGirl.create(:city) }
+		let(:city_C) { FactoryGirl.create(:city, name:"All") }
+	 	let(:cinema_A) { FactoryGirl.create(:cinema, city:city_A) }
+	 	let(:cinema_B) { FactoryGirl.create(:cinema, city:city_A) }
+	 	let(:cinema_C) { FactoryGirl.create(:cinema, city:city_B) }
+	 	let(:movie_A) { FactoryGirl.create(:movie) }
+	 	let(:movie_B) { FactoryGirl.create(:movie) }
+	 	let(:movie_C) { FactoryGirl.create(:movie) }
+
+		describe "#current_movies" do
+			it "returns currently showing movies in the city" do
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A)
+				FactoryGirl.create(:showtime, movie:movie_B, cinema:cinema_B)
+				expect(city_A.current_movies).to include movie_A
+				expect(city_A.current_movies).to include movie_B
+			end	
+
+			it "does not return currently showing movies in other cities" do
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_C)
+				expect(city_A.current_movies).not_to include movie_A
+			end	
+
+			it "returns all currently showing movies in the country for the default city" do
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A)
+				FactoryGirl.create(:showtime, movie:movie_B, cinema:cinema_C)
+				expect(city_C.current_movies).to include movie_A
+			end
+
 		end
 
 	end
-
 end
