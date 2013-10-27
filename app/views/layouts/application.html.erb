@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PakCinemas</title>
+  <title>Cinema Hop</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% City.all.each do |city| %>
+      <tr>
+        <td><%= link_to city.name, city %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= yield %>
 

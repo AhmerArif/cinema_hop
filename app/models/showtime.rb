@@ -4,7 +4,7 @@ class Showtime < ActiveRecord::Base
 	
 	scope :current, lambda {where("showing_at >= ?", Time.now-30.minutes).order('showing_at ASC')}
 	scope :old, lambda {where("showing_at < ?", Time.now-30.minutes).order('showing_at ASC')}
-	scope :recent, :limit => 10, :order => 'created_at DESC'
+	scope :recent, -> {limit(10).order('created_at DESC')}
 
 	just_define_datetime_picker :showing_at
 

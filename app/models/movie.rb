@@ -4,7 +4,7 @@ class Movie < ActiveRecord::Base
 	has_many :cinemas, through: :showtimes
 	has_many :showtimes, dependent: :destroy
 
-	scope :recent, :limit => 7, :order => 'created_at DESC'
+	scope :recent, -> {limit(10).order('created_at DESC')}
 #	scope :now_showing, lambda {where("showing_at >= ?", Time.now-30.minutes).order('showing_at ASC')}
 
 	validates :imdb_link, :url => {message: "Messed up the URL there buddy"}, allow_blank: true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024132702) do
+ActiveRecord::Schema.define(version: 20131027080941) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20131024132702) do
     t.string   "poster_content_type"
     t.integer  "poster_file_size"
     t.datetime "poster_updated_at"
-    t.string   "language"
+    t.string   "language",             default: "English"
   end
 
   add_index "movies", ["slug"], name: "index_movies_on_slug", using: :btree

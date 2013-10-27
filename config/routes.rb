@@ -14,8 +14,8 @@ PakCinemas::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :cities do
-    resource :movies
+  resources :cities, :only => [:show] do
+    resource :movies, :only => [:show]
   end
 
   # Example resource route with options:

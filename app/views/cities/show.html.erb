@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+
+Showing currently available movies in <%= @city.name %>
+
+<%= render  :partial => 'partials/movies_list', :locals => { :movies => @movies } %>

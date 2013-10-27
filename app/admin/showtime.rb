@@ -12,11 +12,11 @@ end
 
 form do |f|
    f.inputs "Details" do
-    f.input :cinema
-    f.input :movie
+    f.input :cinema, :include_blank => false
+    f.input :movie, :include_blank => false
     f.input :showing_at, :as => :just_datetime_picker
-    f.input  :is_3d
-    f.input  :adults_only
+    f.input :is_3d
+    f.input :adults_only
   end
   f.buttons
  end

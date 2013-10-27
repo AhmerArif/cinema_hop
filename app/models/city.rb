@@ -14,4 +14,8 @@ class City < ActiveRecord::Base
 		name=="All" || name.blank? ? true : false
 	end
 
+	def self.default_city
+		City.find_by name: 'All'
+	end
+
 end
