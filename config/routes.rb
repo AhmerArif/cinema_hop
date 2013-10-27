@@ -15,7 +15,7 @@ PakCinemas::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :cities, :only => [:show] do
-    resource :movies, :only => [:show]
+    resources :movies, :only => [:show]
   end
 
   # Example resource route with options:

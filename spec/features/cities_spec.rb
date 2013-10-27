@@ -31,15 +31,19 @@ feature 'View currently showing movies' do
       FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A)
       FactoryGirl.create(:showtime, movie:movie_B, cinema:cinema_B)
       click_link(city_all.name)
-      expect(page).to have_content(movie_A.name)
+      expect(page).to have_content(movie_A.name.titleize)
       expect(page).to have_content(movie_B.name)
     end
+
+=begin Feature under consideration
 
     scenario 'Movie not being shown anywhere in the country over the next 2 days' do
       FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A, showing_at:Time.now+49.hours)
       click_link(city_all.name)
       expect(page).not_to have_content(movie_A.name)
     end
+
+=end
 
     scenario 'Movie stopped being shown in the country' do
       FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A, showing_at:Time.now)
@@ -63,7 +67,7 @@ feature 'View currently showing movies' do
       FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A)
       FactoryGirl.create(:showtime, movie:movie_B, cinema:cinema_B)
       click_link(city_A.name)
-      expect(page).to have_content(movie_A.name)
+      expect(page).to have_content(movie_A.name.titleize)
       expect(page).not_to have_content(movie_B.name)
     end
 

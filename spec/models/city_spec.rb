@@ -47,6 +47,28 @@ describe City do
 				expect(city_C.current_movies).to include movie_A
 			end
 
+		describe "#current_cinemas" do
+			it "returns currently showing cinemas in the city for a given movie" do
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A)
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_B)
+				expect(city_A.current_cinemas(movie_A)).to include cinema_A
+				expect(city_A.current_cinemas(movie_A)).to include cinema_B
+			end	
+
+			it "does not return currently showing cinemas in other cities" do
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_C)
+				expect(city_A.current_cinemas(movie_A)).not_to include cinema_C
+			end	
+
+			it "returns all currently showing cinemas in the country for the default city + given movie" do
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A)
+				FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_C)
+				expect(city_C.current_cinemas(movie_A)).to include cinema_A
+				expect(city_C.current_cinemas(movie_A)).to include cinema_C
+			end
+		end
+
+
 		end
 
 	end

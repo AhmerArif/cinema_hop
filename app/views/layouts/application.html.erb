@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= flash[:notice] %>
 
 <table>
   <thead>
@@ -16,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% City.all.each do |city| %>
+    <% City.all.order("name ASC").each do |city| %>
       <tr>
         <td><%= link_to city.name, city %></td>
       </tr>
@@ -24,6 +25,7 @@
   </tbody>
 </table>
 
+<%= render :partial => 'partials/movies_list', :locals => { :movies => @city.current_movies } %>
 
 <%= yield %>
 

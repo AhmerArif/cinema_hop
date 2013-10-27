@@ -20,7 +20,9 @@ class Movie < ActiveRecord::Base
 
 	def self.currently_showing(city=nil)
 		cinemas = city.nil? || city=="All" || city.default_city? ? Cinema.all : city.cinemas
-		Movie.joins(:showtimes).merge(Showtime.currently_in_cinemas(cinemas))
+		#alternative syntax
+		#Movie.joins(:showtimes).merge(Showtime.currently_in_cinemas(cinemas)).uniq_by(&:id)
+		Movie.includes(:showtimes, :cinemas).where('showtimes.showing_at >= ? AND cinemas.id in(?)', Time.now-30.minutes, cinemas).order('movies.name ASC').references(:showtimes, :cinemas)
 	end
 
 end

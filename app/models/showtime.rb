@@ -31,8 +31,4 @@ class Showtime < ActiveRecord::Base
 		"#{movie.name} @ #{cinema.name} @ #{humanize_showing_at}"
 	end
 
-	def self.currently_in_cinemas(cinemas)
-		self.current.where("cinema_id in (?)", cinemas)
-	end
-
 end

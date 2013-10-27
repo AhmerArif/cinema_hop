@@ -30,7 +30,7 @@ describe Showtime do
 		end
 
 		it "cannot be showing in the past" do 
-			expect(FactoryGirl.build(:showtime, movie:movie, cinema:cinema, showing_at: Time.now-1.hours).valid?).to be_false
+			expect(FactoryGirl.build(:showtime, movie:movie, cinema:cinema, showing_at: Time.now-2.hours).valid?).to be_false
 			expect(FactoryGirl.build(:showtime, movie:movie, cinema:cinema, showing_at: Time.now.midnight+34.hours).valid?).to be_true
 		end
 

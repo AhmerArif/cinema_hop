@@ -1,59 +1,28 @@
-=begin
 require 'spec_helper'
 
-feature 'signing up' do
-  def sign_up
-    visit new_user_registration_path
-    fill_in :user_name, with: valid_attributes[:name]
-    fill_in :user_email, with: valid_attributes[:email]
-    fill_in :user_password, with: 'Welcome1'
-    fill_in :user_password_confirmation, with: 'Welcome1'
-    click_button 'Sign up'
+feature 'View showtimes for a movie' do
+  let!(:city_all) { FactoryGirl.create(:city, name: 'All') }
+  let!(:city_A) { FactoryGirl.create(:city) }
+  let!(:city_B) { FactoryGirl.create(:city) }
+  let!(:cinema_A) { FactoryGirl.create(:cinema, city:city_A) }
+  let!(:cinema_B) { FactoryGirl.create(:cinema, city:city_B) }
+  let!(:movie_A) { FactoryGirl.create(:movie) }
+  let!(:movie_B) { FactoryGirl.create(:movie) }
+
+  scenario 'Movie has current showtimes' do
+    showtime_A = FactoryGirl.create(:showtime, movie:movie_A, cinema:cinema_A)
+    showtime_B =FactoryGirl.create(:showtime, movie:movie_B, cinema:cinema_B)
+    visit root_path
+    first(:link, movie_A.name.titleize).click
+    expect(page).to have_content(movie_A.name.titleize)
+    expect(page).to have_content(cinema_A.name.titleize)
+    #expect(page).to have_content(showtime_A.showing_at)
   end
 
-  let(:valid_attributes) { FactoryGirl.attributes_for(:user) }
-
-  scenario 'via the web form' do
-    sign_up
-    current_path.should eq root_path
+  scenario 'Movie has current showtimes' do
+    click_link(movie_A.name)
+    expect(page).to have_content("This movie isn't being shown in any cinemas around at the moment")
+    #expect(page).to have_content(showtime_A.showing_at)
   end
 
-  scenario 'viewing my details on the registration edit page' do
-    sign_up
-    visit edit_user_registration_path
-    find_field('user[name]').value.should eq valid_attributes[:name]
-    find_field('user[email]').value.should eq valid_attributes[:email]
-    #page.body.should have_content(valid_attributes[:email])
-  end
-
-  scenario 'editing my details on the registration edit page' do
-    sign_up
-    visit edit_user_registration_path
-    fill_in :user_name, with: 'New Name'
-    fill_in :user_email, with: valid_attributes[:email]
-    fill_in :user_password, with: 'Welcome2'
-    fill_in :user_password_confirmation, with: 'Welcome2'
-    fill_in :user_current_password, with: 'Welcome1'
-    click_button 'Update'
-    current_path.should eq root_path
-  end
-
-  scenario 'editing my details and entering non-matching passwords' do
-    sign_up
-    visit edit_user_registration_path
-    fill_in :user_name, with: 'New Name'
-    fill_in :user_email, with: valid_attributes[:email]
-    fill_in :user_password, with: 'Welcome2'
-    fill_in :user_password_confirmation, with: 'Welcome3'
-    click_button 'Update'
-    page.should have_content('we need your current password to confirm your changes')
-  end
-
-  scenario 'canceling my account' do
-    sign_up
-    visit edit_user_registration_path
-    click_link 'Cancel my account'
-    page.should have_content('Bye! Your account was successfully cancelled. We hope to see you again soon.')
-  end
 end
-=end
