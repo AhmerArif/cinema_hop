@@ -2,6 +2,12 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show]
 
   def show
+    @cinemas = @city.current_cinemas(@movie)
+    if @cinemas.blank?
+      flash[:notice] = "That movie isn't currently showing in the specified location"
+      redirect_to root_path
+    end
+    js false
   end
 
   private

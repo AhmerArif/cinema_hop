@@ -8,8 +8,8 @@
 			<tbody>
 				<% for movie in movies %>
 					<tr>
-						<td><%= link_to(image_tag(movie.poster(:medium)), city_movie_path('lahore',movie))%></td>
-						<td><%= link_to movie.name.titleize, city_movie_path('lahore',movie)%></td>
+						<td><%= link_to(image_tag(movie.poster(:medium)), city_movie_path(@city,movie))%></td>
+						<td><%= link_to movie.name.titleize, city_movie_path(@city,movie)%></td>
 					</tr>
 				<% end %>
 			</tbody>

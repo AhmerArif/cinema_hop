@@ -3,6 +3,7 @@
 <head>
   <title>Cinema Hop</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?sensor=false', "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -19,7 +20,7 @@
   <tbody>
     <% City.all.order("name ASC").each do |city| %>
       <tr>
-        <td><%= link_to city.name, city %></td>
+        <td><%= link_to city.name, city, :id=>city.name, :class=>"city_navlinks" %></td>
       </tr>
     <% end %>
   </tbody>

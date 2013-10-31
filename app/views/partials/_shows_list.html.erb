@@ -1,0 +1,22 @@
+<% for cinema in cinemas %>
+	<h2> <%=cinema.name.titleize %> </h2>
+
+	<table class="table cinemas-table">
+		<thead>
+		<tr>
+			<th><center>Showtime</center></th>
+			<th></th>
+			<th></th>
+		</tr>
+				</thead>
+				<tbody>
+					<% for showtime in cinema.current_showtimes(@movie) %>
+						<tr>
+							<td><%= showtime.humanize_showing_at %></td>
+							<td><%= humanize_adults_only(showtime.adults_only) %></td>
+							<td><%= humanize_is_3d(showtime.is_3d?) %></td>
+						</tr>
+					<% end %>
+				</tbody>
+	</table>
+<% end %>

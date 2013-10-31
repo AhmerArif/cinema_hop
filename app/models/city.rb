@@ -7,7 +7,7 @@ class City < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: true
 
 	def current_movies
-		Movie.currently_showing(self)
+		default_city? ? Movie.currently_showing : Movie.currently_showing(self.cinemas)
 	end
 
 	def current_cinemas(movie)
@@ -21,7 +21,5 @@ class City < ActiveRecord::Base
 	def self.default_city
 		City.find_by name: 'All'
 	end
-
-
 
 end

@@ -7,6 +7,7 @@ class CitiesController < ApplicationController
   # GET /cities/1.json
   def show
     @movies = @city.current_movies
+    js false
   end
 
   def index

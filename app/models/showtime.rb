@@ -15,7 +15,7 @@ class Showtime < ActiveRecord::Base
 	validates :is_3d, inclusion: [true, false]
 	validates :showing_at, :uniqueness =>{:scope => [:movie_id, :cinema_id]}
 	validates_datetime :showing_at
-	validates_datetime :showing_at, :on_or_after => 30.minutes.ago, :on_or_after_message => "This showtime is old news man!"
+	validates_datetime :showing_at, :on_or_after => lambda {30.minutes.ago}, :on_or_after_message => "This showtime is old news man!"
 
 	validate :showing_at_is_during_business_hours
 

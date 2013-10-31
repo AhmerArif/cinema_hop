@@ -2,4 +2,4 @@
 
 Showing Showtimes for <%=@movie.name %> in <%= @city.name %>
 
-
+<%= render :partial => 'partials/shows_list', :locals => { :cinemas => @cinemas } %>
