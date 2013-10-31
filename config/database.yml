@@ -19,7 +19,6 @@ development:
   encoding: unicode
   database: pak_cinemas_development
   pool: 5
-  username: ahmerlaptop
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +47,6 @@ test:
   encoding: unicode
   database: pak_cinemas_test
   pool: 5
-  username: ahmerlaptop
   password:
 
 production:
@@ -56,5 +54,4 @@ production:
   encoding: unicode
   database: pak_cinemas_production
   pool: 5
-  username: ahmerlaptop
   password:
